@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="../jquery-2.1.4.min.js"></script>
+<link rel='stylesheet' type='text/css' href='../css/myStyles.css'>
+<script>
+	$(document).ready(function() {
+		$('#Random').on('click', function() {
+			$('#res').load("/homework52?action=" + "1");
+		});
+		$('#button').on('click', function() {
+			var ans = $("#pole").val();
+			$('#res2').load("/homework52?action=" + "2" + "&answer=" + ans+ '&vopros='+ $("#elNum").val());
+		});
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th height="100px"><h1>
+					<font color="#194659">Исключения</font>
+		</tr>
+		<tr>
+			<td valign="top">
+			<form>
+			<div>
+			Нажмите на кнопку и вы увидите свой вопрос
+			<hr>
+			<input type="button" id="Random" value="Нажми уже!"> <span id="res"></span>
+			<hr>
+			<input type="text" id="pole" placeholder="Ваш ответ"> 
+			<input type="button" id="button" value="Check!"> <span id="res2"></span>
+			</div>
+    		</form>		
+			</td>
+		</tr>
+	</table>
+</body>
+<body bgcolor="#FFE4E1">
+  <a href="/index.html"><img src="images/home.jpg" width="50" height="50" border="0"></a>
+  </body>
+</html>
