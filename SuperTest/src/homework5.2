@@ -1,0 +1,70 @@
+package com.myproject;
+
+import java.io.IOException;
+import java.text.ParseException;
+import com.myproject.Homework51;
+
+import com.myproject.Homework5;
+
+import javax.servlet.http.*;
+
+@SuppressWarnings("serial")
+public class Homework52Servlet extends HttpServlet {
+		public void doGet(HttpServletRequest req, HttpServletResponse resp)
+				throws IOException {
+	 resp.setContentType("text/plain");
+	 resp.setCharacterEncoding("UTF-8");
+			int act = Integer.parseInt(req.getParameter("action"));
+			int indexMas=-1;
+			Homework5[] mas = new Homework5[5];
+			Homework5 zero = new Homework5();
+			Homework5 one = new Homework5();
+			Homework5 two = new Homework5();
+			Homework5 three = new Homework5();
+			Homework5 four = new Homework5();
+	 mas[0]=zero;
+	 zero.quest="Как зовут мою кошку?";
+	 zero.ansStr="Пушанна";
+	 mas[1]=one;
+	 one.quest="В каком году я родилась?";
+	 one.ansData="21.11.1994";
+	 mas[2]=two;
+	 two.quest="Какое количество в среднем ног у птицы?";
+	 two.ansNum=0;
+	 mas[3]=three;
+	 three.quest="Главый герой мультика про квадратные штаны?";
+	 three.ansStr="Winsent";
+	 mas[4]=four;
+	 four.quest="Сколько дней в году?";
+	 four.ansNum=365;
+			
+			if(act==1)
+			{
+	 indexMas = ((int)(Math.floor(Math.random()*5)));
+	 resp.getWriter().println("<br>"+mas[indexMas].quest+"<br> <input type =\"hidden\" id =\"elNum\" value=" +indexMas+ ">");
+			}
+			else{
+				try{
+	 checkAnswerF(mas, req.getParameter("answer"), Integer.parseInt(req.getParameter("vopros")),resp);
+				}
+				catch(Homework51 e) {
+	 resp.getWriter().println(e.getMessage());
+				}
+				catch(ParseException e) {
+	 resp.getWriter().println("");
+				}
+				catch(NumberFormatException e) {
+	 resp.getWriter().println("");
+				}
+			}
+		}
+		
+		public static void checkAnswerF(Homework5[] q, String ua, int i,HttpServletResponse resp) throws IOException, Homework51, ParseException, NumberFormatException {
+			int indexMas=i;
+			boolean valid = q[indexMas].checkStr(ua);
+			if (valid)resp.getWriter().println("<br>Ответ правильный");
+			else resp.getWriter().println("<br>Ответ не правильный");
+		}	
+	}
+
+
