@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Maps Google</title>
+    <style>
+    button.new {
+   background: -moz-linear-gradient(#DDA0DD, #DA70D6, #BA55D3, #9400D3);
+    background: -webkit-gradient(linear, 0 0, 0  100%, from(#DDA0DD), to(#9400D3), color-stop(0.6, #DA70D6), color-stop(0.6,  #BA55D3));
+    color: #fff;
+    border: 2.5px solid  #666;
+  }
+  
+      #map-canvas {
+	height: 600px;
+	width: 1300px;
+	margin: 10px;
+	padding: 5px;
+	border: 7px black double;
+}	
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+function initialize() {
+	var myLatlng = new google.maps.LatLng(59.938167, 30.239168);
+	 var myLatlng2 = new google.maps.LatLng(60.002515, 30.294141);
+	 
+  var mapOptions = {
+    zoom: 4,
+    center: myLatlng
+  };
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+  var marker = new google.maps.Marker({
+    position: map.getCenter(),
+  });
+  var contentString = 'Sweet home'
+   var contentString2 = 'Home of my parents' ;
+	 createMarker(myLatlng, contentString, 'Uluru (Ayers Rock)' );
+createMarker(myLatlng2, contentString2, 'Place second' );
+function createMarker(myLatlng, contentString, mytitle) {
+	 var marker = new google.maps.Marker({
+	 	 position : myLatlng,
+	 	 map : map,
+	 	 title : mytitle
+	 });
+	 var infowindow = new google.maps.InfoWindow({
+	 	 content : contentString
+	 });
+	 google.maps.event.addListener(marker, 'click' , function() {
+	 	 infowindow.open(map, marker);
+	 });
+}
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body bgcolor="#FFE4E1">
+  <a href="/index.html"><img src="images/home.jpg" width="50" height="50" border="0"></a>
+    <div id="map-canvas"></div>
+  </body>
+
+</html>
