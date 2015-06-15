@@ -1,0 +1,37 @@
+package com.myproject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Homework5 {
+	public String quest = null;
+	public String ansStr = null;
+	public String ansData = null;
+	public Integer ansNum = null;
+		
+	public boolean checkStr(String answer) throws Homework51, ParseException, NumberFormatException{
+		if (ansStr != null){
+			if(!ansStr.equals(answer)){
+				throw new Homework51 ("<br>Выбирай");
+			}
+		}
+		if (ansData != null){
+			SimpleDateFormat myDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+			Date userDate = myDateFormat.parse(answer);
+			Date realDate = myDateFormat.parse(ansData);
+			if (!userDate.equals(realDate)){
+				return false;
+			}
+	// dateFormat.parse(answer);
+		}
+		if (ansNum != null){
+			if(ansNum != Integer.parseInt(answer)){
+				return false;
+			}
+		}
+		return true;
+	}
+
+}
